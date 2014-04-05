@@ -1,0 +1,24 @@
+﻿<mg2:DialogBase x:Class="Mg2.Views.OptionsView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mg2="clr-namespace:Mg2"
+                Width="400" Height="200"
+                ResizeMode="NoResize"
+                WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="6">
+            <StackPanel>
+                <Label Content="Marking changes" />
+                <StackPanel Margin="4">
+                    <CheckBox Content="Ask to confirm changes that also affect other packages" IsChecked="{Binding Options.AskToConfirmChangesThatAlsoAffectOtherPackages}" />
+                    <CheckBox Content="Clicking on the status icon marks the most likely action" IsChecked="{Binding Options.ClickingOnTheStatusIconMarksTheMostLikelyAction}" />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <Button Grid.Row="1" Content="Close" Height="23" Width="70" Margin="6,0,6,6" IsDefault="True" HorizontalAlignment="Right" Command="{Binding CloseCommand}"/>
+    </Grid>
+</mg2:DialogBase>

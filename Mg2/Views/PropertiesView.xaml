@@ -1,0 +1,84 @@
+﻿<mg2:DialogBase x:Class="Mg2.Views.PropertiesView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mg2="clr-namespace:Mg2"
+                Width="450" Height="330"
+                MinWidth="450" MinHeight="330"
+                WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TabControl Margin="6" Padding="6">
+            <TabItem Header="Common">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Package:" Grid.Row="0" Grid.Column="0" />
+                    <RichTextBox IsReadOnly="True" Grid.Row="0" Grid.Column="1" Padding="0,2,0,2">
+                        <RichTextBox.Document>
+                            <FlowDocument>
+                                <Paragraph Margin="0">
+                                    <Run Text="{Binding PackageItem.Name, Mode=OneWay}" FontSize="14" FontWeight="Bold" />
+                                </Paragraph>
+                                <Paragraph Margin="0">
+                                    <Run Text="{Binding PackageItem.Summary, Mode=OneWay}" />
+                                </Paragraph>
+                            </FlowDocument>
+                        </RichTextBox.Document>
+                    </RichTextBox>
+                    <Label Content="Status:" Grid.Row="1" Grid.Column="0" />
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                        <Button Content="{Binding PackageItem.Status, Converter={StaticResource MarkToButtonText}}"
+                                Background="{Binding PackageItem.Status, Converter={StaticResource MarkToButtonBrush}}"
+                                IsHitTestVisible="False" Width="18" Height="18" SnapsToDevicePixels="True" Margin="2,0,0,0"
+                                Style="{StaticResource Square}" />
+                        <Label Content="{Binding PackageItem.Status}" />
+                    </StackPanel>
+                    <Label Content="Authors:" Grid.Row="2" Grid.Column="0" />
+                    <Label Grid.Row="2" Grid.Column="1">
+                        <TextBlock Text="{Binding PackageItem.Authors, Converter={StaticResource StringCollectionsToString}}" TextWrapping="Wrap"/>
+                    </Label>
+                    <Label Content="Version:" Grid.Row="3" Grid.Column="0" />
+                    <Label Grid.Row="3" Grid.Column="1">
+                        <TextBlock Text="{Binding PackageItem.Version}" />
+                    </Label>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Dependencies">
+                <ListBox ItemsSource="{Binding Dependencies}" />
+            </TabItem>
+            <TabItem Header="Dependants">
+                <ListBox ItemsSource="{Binding Dependants}" />
+            </TabItem>
+            <TabItem Header="Files" Visibility="{Binding Files, Converter={StaticResource NullToVisibility}}">
+                <TreeView ItemsSource="{Binding Files}" />
+            </TabItem>
+            <TabItem Header="Description">
+                <RichTextBox IsReadOnly="True" VerticalScrollBarVisibility="Auto" Padding="0,2,0,2">
+                    <RichTextBox.Document>
+                        <FlowDocument>
+                            <Paragraph Margin="2">
+                                <Run Text="{Binding PackageItem.Summary, Mode=OneWay}" FontSize="14" FontWeight="Bold" />
+                            </Paragraph>
+                            <Paragraph Margin="2">
+                                <Run Text="{Binding PackageItem.Description, Mode=OneWay}" />
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox.Document>
+                </RichTextBox>
+            </TabItem>
+        </TabControl>
+        <Button Grid.Row="1" Content="Close" Height="23" Width="70" Margin="6,0,6,6" IsDefault="True" HorizontalAlignment="Right" Command="{Binding CloseCommand}"/>
+    </Grid>
+</mg2:DialogBase>

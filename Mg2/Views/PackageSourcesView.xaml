@@ -1,0 +1,54 @@
+﻿<mg2:DialogBase x:Class="Mg2.Views.PackageSourcesView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mg2="clr-namespace:Mg2"
+                Width="600" Height="400"
+                ResizeMode="NoResize"
+                WindowStartupLocation="CenterOwner"
+                x:Name="Root">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Content="Add" Margin="0,6,2,6" Command="{Binding AddCommand}" Height="23" Width="23"/>
+                <Button Content="Remove" Margin="2,6,2,6" Command="{Binding RemoveCommand}" Height="23" Width="23"/>
+            </StackPanel>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ListView Grid.Row="1" Grid.ColumnSpan="3" Margin="6,0,6,0" ItemsSource="{Binding PackageSources}" SelectedItem="{Binding SelectedSource}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" Margin="2,0,2,0" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Label Grid.Row="2" Grid.Column="0" Content="Name:" Margin="6,2,3,1" />
+                <TextBox Grid.Row="2" Grid.Column="1" Height="23" Margin="6,6,3,1" VerticalContentAlignment="Center" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                <Label Grid.Row="3" Grid.Column="0" Content="Location:" Margin="6,2,3,1" />
+                <TextBox Grid.Row="3" Grid.Column="1" Height="23" Margin="6,6,3,1" VerticalContentAlignment="Center" Text="{Binding Location, UpdateSourceTrigger=PropertyChanged}" />
+                <Label Grid.Row="4" Grid.Column="0" Content="Provider:" Margin="6,1,3,6" />
+                <TextBox Grid.Row="4" Grid.Column="1" Height="23" Margin="6,1,3,6" VerticalContentAlignment="Center" Text="{Binding Provider, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" />
+                <Button Grid.Row="4" Grid.Column="2" Content="Update" Width="60" Height="23" Margin="3,1,6,6" Command="{Binding UpdateCommand}" />
+            </Grid>
+        </Grid>
+        <Button Grid.Row="1" Content="Close" Height="23" Width="70" Margin="6,0,6,6" IsDefault="True" HorizontalAlignment="Right" Command="{Binding CloseCommand}"/>
+    </Grid>
+</mg2:DialogBase>

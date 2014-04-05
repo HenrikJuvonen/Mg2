@@ -1,0 +1,67 @@
+﻿<mg2:DialogBase x:Class="Mg2.Views.ActionsView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mg2="clr-namespace:Mg2"
+                xmlns:model="clr-namespace:MgKit.Model;assembly=MgKit"
+                Width="500" Height="300"
+                MinWidth="300" MinHeight="200"
+                WindowStartupLocation="CenterOwner">
+    <mg2:DialogBase.Resources>
+        <DataTemplate x:Key="PackageActionDataTemplate" DataType="model:PackageAction">
+            <Border x:Name="Border">
+                <Grid Margin="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0">
+                    <Run Text="{Binding Package.Name, Mode=OneWay}"/>-<Run Text="{Binding Package.Version, Mode=OneWay}"/>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Text="{Binding Status, Mode=OneWay}" FontWeight="Bold" />
+                    <ProgressBar Grid.Column="2" Value="{Binding Progress, Mode=TwoWay}" Minimum="0" Maximum="100" IsIndeterminate="{Binding IsIndeterminate, Mode=OneWay}" />
+                </Grid>
+            </Border>
+            <DataTemplate.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="White" TargetName="Border"/>
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="GhostWhite" TargetName="Border"/>
+                </Trigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+        <CollectionViewSource x:Key="MyItems" Source="{Binding OrderedList}" IsLiveGroupingRequested="True" IsLiveSortingRequested="True">
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="Type" />
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
+    </mg2:DialogBase.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ItemsControl Grid.Row="0" ItemsSource="{Binding Source={StaticResource MyItems}}" Margin="6,6,6,6"
+                      ItemTemplate="{StaticResource PackageActionDataTemplate}"
+                      ScrollViewer.VerticalScrollBarVisibility="Visible" AlternationCount="2">
+            <ItemsControl.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ItemsControl.GroupStyle>
+            <ItemsControl.Template>
+                <ControlTemplate>
+                    <ScrollViewer Padding="{TemplateBinding Padding}">
+                        <ItemsPresenter />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ItemsControl.Template>
+        </ItemsControl>
+        <Button Grid.Row="1" Height="23" Width="70" Margin="6,0,6,6" HorizontalAlignment="Right" Content="Close" Command="{Binding CloseCommand}" Visibility="{Binding CanClose, Converter={StaticResource BooleanToVisibility}}" />
+    </Grid>
+</mg2:DialogBase>

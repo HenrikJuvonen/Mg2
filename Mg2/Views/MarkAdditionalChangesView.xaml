@@ -1,0 +1,23 @@
+﻿<mg2:DialogBase x:Class="Mg2.Views.MarkAdditionalChangesView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mg2="clr-namespace:Mg2"
+                Width="400" Height="300"
+                MinWidth="300" MinHeight="200"
+                WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="Mark additional required changes?"/>
+        <TextBlock Grid.Row="1" Text="The chosen action also affects other packages. The following changes are required in order to proceed." TextWrapping="Wrap" Margin="6"/>
+        <TreeView Grid.Row="2" ItemsSource="{Binding List}" Margin="6,0,6,6"/>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Cancel" Height="23" Width="70" Margin="0,0,0,6" IsDefault="True" Command="{Binding CancelCommand}"/>
+            <Button Content="Mark" Height="23" Width="70" Margin="6,0,6,6" Command="{Binding MarkCommand}"/>
+        </StackPanel>
+    </Grid>
+</mg2:DialogBase>
