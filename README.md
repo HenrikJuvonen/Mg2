@@ -17,11 +17,11 @@ Apache License 2.0
 Requirements
 ------------
 
-OneGet PowerShell-module
-.NET 4.5 Framework
-Galasoft.MvvmLight.WPF45 + Extras (included)
-System.Windows.Interactivity (included)
-Microsoft.Practices.ServiceLocation (included)
+* OneGet PowerShell-module
+* .NET 4.5 Framework
+* Galasoft.MvvmLight.WPF45 + Extras (included)
+* System.Windows.Interactivity (included)
+* Microsoft.Practices.ServiceLocation (included)
 
 Build
 -----
