@@ -69,7 +69,7 @@ namespace Mg2.Behaviors
                 return;
 
             if (kGesture.Matches(null, args))
-                this.InvokeActions(null);
+                InvokeActions(null);
         }
     }
 }

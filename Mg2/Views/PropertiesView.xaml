@@ -25,7 +25,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Label Content="Package:" Grid.Row="0" Grid.Column="0" />
-                    <RichTextBox IsReadOnly="True" Grid.Row="0" Grid.Column="1" Padding="0,2,0,2">
+                    <RichTextBox IsReadOnly="True" Grid.Row="0" Grid.Column="1" Padding="0,2,0,2" MaxHeight="120">
                         <RichTextBox.Document>
                             <FlowDocument>
                                 <Paragraph Margin="0">
@@ -69,7 +69,7 @@
                     <RichTextBox.Document>
                         <FlowDocument>
                             <Paragraph Margin="2">
-                                <Run Text="{Binding PackageItem.Summary, Mode=OneWay}" FontSize="14" FontWeight="Bold" />
+                                <Run Text="{Binding PackageItem.Name, Mode=OneWay}" FontSize="14" FontWeight="Bold" />
                             </Paragraph>
                             <Paragraph Margin="2">
                                 <Run Text="{Binding PackageItem.Description, Mode=OneWay}" />

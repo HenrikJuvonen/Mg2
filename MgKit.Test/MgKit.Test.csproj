@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7BB567DD-96D1-428D-A1A8-3AF5D4E3C937}</ProjectGuid>
+    <ProjectGuid>{308B979B-0246-44CC-BDFE-4FA67391E6AA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MgKit</RootNamespace>
-    <AssemblyName>MgKit</AssemblyName>
+    <RootNamespace>MgKit.Test</RootNamespace>
+    <AssemblyName>MgKit.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,27 +29,28 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="xunit">
+      <HintPath>..\packages\xunit.1.9.2\lib\net20\xunit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\IPackageSource.cs" />
-    <Compile Include="Interface\IPackageSourceProvider.cs" />
-    <Compile Include="OneGet\OneGetPackageSourceProvider.cs" />
-    <Compile Include="OneGet\OneGetPackageManager.cs" />
-    <Compile Include="PackageSource.cs" />
-    <Compile Include="Interface\IPackage.cs" />
-    <Compile Include="Interface\IPackageAction.cs" />
-    <Compile Include="PackageAction.cs" />
-    <Compile Include="Package.cs" />
-    <Compile Include="Interface\IPackageManager.cs" />
+    <Compile Include="Mock\MockPackageManager.cs" />
+    <Compile Include="Mock\MockPackageManagerTest.cs" />
+    <Compile Include="Mock\MockPackageSourceProvider.cs" />
+    <Compile Include="Mock\MockPackageManagerMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MgKit\MgKit.csproj">
+      <Project>{7BB567DD-96D1-428D-A1A8-3AF5D4E3C937}</Project>
+      <Name>MgKit</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

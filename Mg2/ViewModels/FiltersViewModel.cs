@@ -1,10 +1,10 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using System;
+using GalaSoft.MvvmLight.Command;
 using Mg2.Models;
-using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Windows.Input;
 using System.Xml.Serialization;
-using ICommand = System.Windows.Input.ICommand;
 
 namespace Mg2.ViewModels
 {
@@ -61,6 +61,7 @@ namespace Mg2.ViewModels
             }
             catch
             {
+                Console.WriteLine("Could not save filters");
             }
 
             TryClose();

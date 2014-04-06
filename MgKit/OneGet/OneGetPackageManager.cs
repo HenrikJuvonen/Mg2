@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Threading.Tasks;
-using MgKit.Model.Interface;
+using MgKit.Interface;
 
-namespace MgKit.Model.OneGet
+namespace MgKit.OneGet
 {
     public class OneGetPackageManager : IPackageManager
     {

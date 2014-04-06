@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using MgKit.Model.Interface;
+using MgKit.Interface;
 
-namespace MgKit.Model
+namespace MgKit
 {
     public class PackageAction : IPackageAction, INotifyPropertyChanged
     {

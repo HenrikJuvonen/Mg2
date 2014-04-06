@@ -1,9 +1,9 @@
-﻿using MgKit.Model.Interface;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MgKit.Interface;
 
-namespace MgKit.Model.Mock
+namespace MgKit.Test.Mock
 {
     public class MockPackageManager : IPackageManager
     {
@@ -18,10 +18,9 @@ namespace MgKit.Model.Mock
 
         public Task Reload()
         {
-            return Task.Run(() => {
-                PackageSourceProvider = new MockPackageSourceProvider();
+            PackageSourceProvider = new MockPackageSourceProvider();
 
-                _packages = new List<Package>
+            _packages = new List<Package>
                 {
                     new Package("test", "Test", "1.0", "any", "test..", "test.", new List<IPackage>(), new List<IPackage>(), new List<IPackage>(),new List<string> {"red"}, new List<string> {"author1", "author2"}, new List<string>()),
                     new Package("test", "Test", "2.0", "any", "test..", "test.", new List<IPackage>(), new List<IPackage>(), new List<IPackage>(),new List<string> {"red"}, new List<string> {"author1", "author2"}, new List<string> {"latest"}),
@@ -30,6 +29,7 @@ namespace MgKit.Model.Mock
                     new Package("other", "Other", "1.3", "any", "other..", "other.", new List<IPackage>(), new List<IPackage>(), new List<IPackage>(),new List<string> {"red","blue"}, new List<string> {"author3"}, new List<string> {"latest"})
                 };
 
+            return Task.Run(() => {
                 foreach (var package in _packages)
                 {
                     var id = package.Id;
@@ -56,7 +56,7 @@ namespace MgKit.Model.Mock
         {
             return new Task(() =>
             {
-                Parallel.ForEach(actions, action =>
+                foreach (var action in actions)
                 {
                     switch (action.Type)
                     {
@@ -82,7 +82,7 @@ namespace MgKit.Model.Mock
                             Unlock(action);
                             break;
                     }
-                });
+                }
                 SetFlags();
             });
         }
@@ -232,19 +232,22 @@ namespace MgKit.Model.Mock
 
         private void Uninstall(PackageAction action)
         {
-            var package = (Package)action.Package;
-
-            if (package.Flags.All(n => n != "installed"))
+            lock (_installLock)
             {
-                action.Progress = 100;
-                action.Status = "failed";
-                return;
-            }
+                var package = (Package) action.Package;
 
-            action.Status = "uninstalling";
-            SimulateProgressUpdate(action);
-            action.Status = "uninstalled";
-            package.RemoveFlags("installed");
+                if (package.Flags.All(n => n != "installed"))
+                {
+                    action.Progress = 100;
+                    action.Status = "failed";
+                    return;
+                }
+
+                action.Status = "uninstalling";
+                SimulateProgressUpdate(action);
+                action.Status = "uninstalled";
+                package.RemoveFlags("installed");
+            }
         }
 
         private static void SimulateProgressUpdate(PackageAction action)

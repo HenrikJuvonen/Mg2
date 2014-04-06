@@ -1,10 +1,10 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Mg2.Models;
-using MgKit.Model;
-using MgKit.Model.Interface;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
+using MgKit;
+using MgKit.Interface;
 
 namespace Mg2.ViewModels
 {

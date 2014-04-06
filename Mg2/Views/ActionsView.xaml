@@ -2,12 +2,12 @@
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mg2="clr-namespace:Mg2"
-                xmlns:model="clr-namespace:MgKit.Model;assembly=MgKit"
+                xmlns:mgKit="clr-namespace:MgKit;assembly=MgKit"
                 Width="500" Height="300"
                 MinWidth="300" MinHeight="200"
                 WindowStartupLocation="CenterOwner">
     <mg2:DialogBase.Resources>
-        <DataTemplate x:Key="PackageActionDataTemplate" DataType="model:PackageAction">
+        <DataTemplate x:Key="PackageActionDataTemplate" DataType="mgKit:PackageAction">
             <Border x:Name="Border">
                 <Grid Margin="2">
                     <Grid.ColumnDefinitions>

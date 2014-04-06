@@ -1,19 +1,17 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Threading;
 using Mg2.Models;
-using MgKit.Model;
-using MgKit.Model.Interface;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using System.Xml.Serialization;
-using ICommand = System.Windows.Input.ICommand;
+using MgKit;
+using MgKit.Interface;
 
 namespace Mg2.ViewModels
 {
@@ -181,7 +179,7 @@ namespace Mg2.ViewModels
             SelectedFilter = Filters.FirstOrDefault();
         }
 
-        private async Task Load(bool forceDownload = false)
+        private async void Load(bool forceDownload = false)
         {
             if (!IsIdle)
                 return;
@@ -210,9 +208,9 @@ namespace Mg2.ViewModels
             RaisePropertyChanged(() => Status);
         }
 
-        private async void Reload()
+        private void Reload()
         {
-            await Load(true);
+            Load(true);
         }
 
         private void ReadMarkings()

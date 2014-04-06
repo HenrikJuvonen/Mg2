@@ -1,6 +1,6 @@
-﻿using MgKit.Model.Interface;
+﻿using MgKit.Interface;
 
-namespace MgKit.Model
+namespace MgKit
 {
     public class PackageSource : IPackageSource
     {

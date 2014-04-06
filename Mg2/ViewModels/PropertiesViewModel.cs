@@ -1,10 +1,10 @@
 ﻿using System;
+using GalaSoft.MvvmLight.Command;
+using Mg2.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
-using Mg2.Models;
 
 namespace Mg2.ViewModels
 {
@@ -22,20 +22,20 @@ namespace Mg2.ViewModels
             DisplayName = "Properties";
             PackageItem = packageItem;
             CloseCommand = new RelayCommand(TryClose);
-
-            try
-            {
-                GetFiles();
-            }
-            catch
-            {
-            }
+            GetFiles();
         }
 
         private void GetFiles()
         {
-            Files = PackageItem.PackageIdentity.Files.Select(file => new TreeViewItem { Header = file.Path }).ToArray();
-            RaisePropertyChanged(() => Files);
+            try
+            {
+                Files = PackageItem.PackageIdentity.Files.Select(file => new TreeViewItem { Header = file.Path }).ToArray();
+                RaisePropertyChanged(() => Files);
+            }
+            catch
+            {
+                Console.WriteLine("Could not get files");
+            }
         }
     }
 }

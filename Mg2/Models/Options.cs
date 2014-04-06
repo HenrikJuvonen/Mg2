@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-using MgKit.Model;
-using MgKit.Model.Interface;
+using MgKit;
+using MgKit.Interface;
 
 namespace Mg2.Models
 {
@@ -72,6 +73,7 @@ namespace Mg2.Models
             }
             catch
             {
+                Console.WriteLine("Could not save options");
             }
         }
         
@@ -84,8 +86,8 @@ namespace Mg2.Models
             }
             set
             {
-                _askToConfirmChangesThatAlsoAffectOtherPackages = value;
-                RaisePropertyChanged(() => AskToConfirmChangesThatAlsoAffectOtherPackages);
+                Set(() => AskToConfirmChangesThatAlsoAffectOtherPackages,
+                    ref _askToConfirmChangesThatAlsoAffectOtherPackages, value);
                 Save();
             }
         }
@@ -99,8 +101,8 @@ namespace Mg2.Models
             }
             set
             {
-                _clickingOnTheStatusIconMarksTheMostLikelyAction = value;
-                RaisePropertyChanged(() => ClickingOnTheStatusIconMarksTheMostLikelyAction);
+                Set(() => ClickingOnTheStatusIconMarksTheMostLikelyAction,
+                    ref _clickingOnTheStatusIconMarksTheMostLikelyAction, value);
                 Save();
             }
         }

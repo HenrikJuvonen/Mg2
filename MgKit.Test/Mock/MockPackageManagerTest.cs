@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using MgKit.Model.Interface;
+using MgKit.Interface;
 using Xunit;
 
-namespace MgKit.Model.Mock
+namespace MgKit.Test.Mock
 {
     public class MockPackageManagerTest
     {
@@ -60,7 +60,7 @@ namespace MgKit.Model.Mock
         [Fact]
         public void PackageGetsFetched()
         {
-            var package = PackageManager.Packages.Single(n => n.Id == "test");
+            var package = PackageManager.Packages.Single(n => n.Id == "test" && n.Version == "1.0");
 
             TryFetch(package);
             Assert.True(package.Flags.Any(n => n == "fetched"));
@@ -69,7 +69,7 @@ namespace MgKit.Model.Mock
         [Fact]
         public void PackageGetsInstalled()
         {
-            var package = PackageManager.Packages.Single(n => n.Id == "test");
+            var package = PackageManager.Packages.Single(n => n.Id == "test" && n.Version == "1.0");
 
             TryFetch(package);
             Assert.True(package.Flags.Any(n => n == "fetched"));
@@ -81,7 +81,7 @@ namespace MgKit.Model.Mock
         [Fact]
         public void PackageGetsReinstalled()
         {
-            var package = PackageManager.Packages.Single(n => n.Id == "test");
+            var package = PackageManager.Packages.Single(n => n.Id == "test" && n.Version == "1.0");
 
             TryFetch(package);
             Assert.True(package.Flags.Any(n => n == "fetched"));
@@ -96,7 +96,7 @@ namespace MgKit.Model.Mock
         [Fact]
         public void PackageGetsUninstalled()
         {
-            var package = PackageManager.Packages.Single(n => n.Id == "test");
+            var package = PackageManager.Packages.Single(n => n.Id == "test" && n.Version == "1.0");
 
             TryFetch(package);
             Assert.True(package.Flags.Any(n => n == "fetched"));
@@ -111,7 +111,7 @@ namespace MgKit.Model.Mock
         [Fact]
         public void PackageGetsLocked()
         {
-            var package = PackageManager.Packages.Single(n => n.Id == "test");
+            var package = PackageManager.Packages.Single(n => n.Id == "test" && n.Version == "1.0");
 
             TryLock(package);
             Assert.True(package.Flags.Any(n => n == "locked"));
@@ -120,7 +120,7 @@ namespace MgKit.Model.Mock
         [Fact]
         public void PackageGetsUnlocked()
         {
-            var package = PackageManager.Packages.Single(n => n.Id == "test");
+            var package = PackageManager.Packages.Single(n => n.Id == "test" && n.Version == "1.0");
 
             TryUnlock(package);
             Assert.False(package.Flags.Any(n => n == "locked"));

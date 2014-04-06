@@ -1,9 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using MgKit.Model.Interface;
-using System.Collections.Generic;
+using MgKit.Interface;
 
-namespace MgKit.Model.Mock
+namespace MgKit.Test.Mock
 {
     public class MockPackageSourceProvider : IPackageSourceProvider
     {

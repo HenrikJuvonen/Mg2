@@ -1,15 +1,15 @@
-﻿using MgKit.Model;
-using MgKit.Model.Interface;
-using MgKit.Model.Mock;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MgKit.Interface;
+using Xunit;
 
-namespace MgKit
+namespace MgKit.Test.Mock
 {
-    static class Program
+    public class MockPackageManagerMock
     {
-        static void Main()
+        [Fact]
+        public void Mock()
         {
             var manager = new MockPackageManager();
 
@@ -60,8 +60,6 @@ namespace MgKit
             {
                 Console.WriteLine("{0,-15}", package);
             }
-
-            Console.Read();
         }
     }
 }

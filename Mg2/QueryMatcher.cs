@@ -39,12 +39,12 @@ namespace Mg2
                 {
                     switch (predicate.Operator)
                     {
-                        case Operator.EQUAL: return AsVersion(package.PackageIdentity.Version) == AsVersion(expr2.Value);
-                        case Operator.NOTEQUAL: return AsVersion(package.PackageIdentity.Version) != AsVersion(expr2.Value);
-                        case Operator.GREATERTHAN: return AsVersion(package.PackageIdentity.Version) > AsVersion(expr2.Value);
-                        case Operator.LESSTHAN: return AsVersion(package.PackageIdentity.Version) < AsVersion(expr2.Value);
-                        case Operator.GREATERTHANOREQUAL: return AsVersion(package.PackageIdentity.Version) >= AsVersion(expr2.Value);
-                        case Operator.LESSTHANOREQUAL: return AsVersion(package.PackageIdentity.Version) <= AsVersion(expr2.Value);
+                        case Operator.Equal: return AsVersion(package.PackageIdentity.Version) == AsVersion(expr2.Value);
+                        case Operator.NotEqual: return AsVersion(package.PackageIdentity.Version) != AsVersion(expr2.Value);
+                        case Operator.GreaterThan: return AsVersion(package.PackageIdentity.Version) > AsVersion(expr2.Value);
+                        case Operator.LessThan: return AsVersion(package.PackageIdentity.Version) < AsVersion(expr2.Value);
+                        case Operator.GreaterThanOrEqual: return AsVersion(package.PackageIdentity.Version) >= AsVersion(expr2.Value);
+                        case Operator.LessThanOrEqual: return AsVersion(package.PackageIdentity.Version) <= AsVersion(expr2.Value);
                     }
                 }
                 catch (Exception e)
@@ -62,16 +62,16 @@ namespace Mg2
 
             switch (predicate.Operator)
             {
-                case Operator.OR:
+                case Operator.Or:
                     return Match(package, predicate.Operand1) || Match(package, predicate.Operand2);
-                case Operator.AND:
+                case Operator.And:
                     return Match(package, predicate.Operand1) && Match(package, predicate.Operand2);
-                case Operator.EQUAL:
-                case Operator.NOTEQUAL:
-                case Operator.GREATERTHAN:
-                case Operator.LESSTHAN:
-                case Operator.GREATERTHANOREQUAL:
-                case Operator.LESSTHANOREQUAL:
+                case Operator.Equal:
+                case Operator.NotEqual:
+                case Operator.GreaterThan:
+                case Operator.LessThan:
+                case Operator.GreaterThanOrEqual:
+                case Operator.LessThanOrEqual:
                     if (expr1 != null)
                     {
                         switch (expr1.Value)
@@ -89,7 +89,7 @@ namespace Mg2
         {
             switch (predicate.Operator)
             {
-                case Operator.NOT:
+                case Operator.Not:
                     return !Match(package, predicate.Operand);
             }
 

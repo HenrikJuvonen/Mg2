@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using MgKit.Model.Interface;
+using MgKit.Interface;
 
-namespace MgKit.Model
+namespace MgKit
 {
     public class Package : IPackage
     {

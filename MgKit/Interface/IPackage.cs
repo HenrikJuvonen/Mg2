@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MgKit.Model.Interface
+namespace MgKit.Interface
 {
     public interface IPackage
     {

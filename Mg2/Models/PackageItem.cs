@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using GalaSoft.MvvmLight;
-using MgKit.Model.Interface;
+using MgKit.Interface;
 
 namespace Mg2.Models
 {

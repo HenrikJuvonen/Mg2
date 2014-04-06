@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MgKit.Model.Interface
+namespace MgKit.Interface
 {
     public interface IPackageManager
     {

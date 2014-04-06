@@ -12,22 +12,14 @@ namespace Mg2.Models
         public string Name
         {
             get { return _name; }
-            set
-            {
-                _name = value;
-                RaisePropertyChanged(() => Name);
-            }
+            set { Set(() => Name, ref _name, value); }
         }
 
         [XmlText]
         public string Query
         {
             get { return _query; }
-            set
-            {
-                _query = value;
-                RaisePropertyChanged(() => Query);
-            }
+            set { Set(() => Query, ref _query, value); }
         }
 
         public Filter()

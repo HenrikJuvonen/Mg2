@@ -1,10 +1,12 @@
-﻿using Mg2.Models;
+﻿using GalaSoft.MvvmLight.Ioc;
+using Mg2.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using MgKit.Interface;
 
 namespace Mg2.Views
 {
@@ -51,7 +53,7 @@ namespace Mg2.Views
 
             filter();
         }
-
+        
         private void Filter()
         {
             IEnumerable<PackageItem> packageItems = null;

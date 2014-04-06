@@ -1,4 +1,4 @@
-﻿namespace MgKit.Model.Interface
+﻿namespace MgKit.Interface
 {
     public interface IPackageSource
     {
